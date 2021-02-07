@@ -1,0 +1,21 @@
+.first-div{
+    padding: 50px;
+    margin-top: 90px;
+    margin-left: 500px;
+}
+#menuInfo{
+    display: grid;
+grid-template-columns: repeat(3,1fr);
+grid-gap: 10px;
+margin-left: 70px;
+}
+#foodIteam{
+    margin-left: 100px;
+}
+.createDiv img{
+   width: 250px;
+}
+.foodDetails img{
+    width: 250px;
+}
+
