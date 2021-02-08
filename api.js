@@ -14,8 +14,7 @@ document.getElementById("btn").addEventListener("click",function(){
 const dishmeal=meal=>{
 console.log(meal);
 const mealIteam=document.getElementById("meal")
-
-
+document.getElementById("menuInfo").innerHTML="";
 meal.meals.map(iteam=>{
     
     const iteamName=iteam.strMeal
@@ -25,15 +24,17 @@ meal.meals.map(iteam=>{
     
      const menulist=`
       
-      <img  src="${iteam.strMealThumb}"   onclick=" menuDetails('${iteamName}')">
-      <p onclick=" menuDetails('${iteamName}')">${ iteamName}</p>
+      <img  src="${iteam.strMealThumb}"   onclick=" menuDetails('${iteam.idMeal}')">
+      <p onclick=" menuDetails('${iteam.idMeal}')">Name: ${ iteamName}</p>
+      <p onclick=" menuDetails('${iteam.idMeal}')">Id: ${ iteam.idMeal}</p>
       
      `
 
      createDiv.innerHTML=menulist;
-     menuInfo.appendChild(createDiv);
-
-
+    
+     menuInfos.appendChild(createDiv);
+     
+   
 
 });
 
@@ -42,7 +43,7 @@ meal.meals.map(iteam=>{
 
 
 const menuDetails=name=>{
-const url=(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
+const url=(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name}`)
       fetch(url)
       .then(res=>res.json())
       .then(data=>foodInfo(data))
@@ -50,17 +51,17 @@ const url=(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
 
 
 
-
  const foodInfo= foodName =>{
      const iteam=document.getElementById("foodIteam");
-
+      iteam.innerHTML="";
  foodName.meals.map( iteamInfo =>{
-
-    const nameFood=iteamInfo.strMeal;
+    
     const foodDetails=document.createElement("div");
     foodDetails.className="foodDetails"
+   
     const foodIteamList=`
     <img src="${iteamInfo.strMealThumb}">
+    <p><b>food ID:</b> ${iteamInfo.idMeal}</p>
     <p><b>food Name:</b>       ${iteamInfo.strMeal}</p>
     <p><b>food Category:</b>   ${iteamInfo.strCategory}</p>
     <p><b>food Ingredient1:</b>   ${iteamInfo.strIngredient1}</p>
@@ -71,6 +72,7 @@ const url=(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
     `
    foodDetails.innerHTML=foodIteamList;
    iteam.appendChild(foodDetails);
+   
 
     })
  }
